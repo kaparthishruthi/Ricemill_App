@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+    }
+    a {
+      display: inline-block;
+      margin: 15px;
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a:hover {
+      background-color: #004999;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome, <%= user.username %>!</h1>
+
+  <a href="/items">View All Items</a>
+  <a href="/items/new">Add New Item</a>
+  <a href="/logout">Logout</a>
+
+</body>
+</html>

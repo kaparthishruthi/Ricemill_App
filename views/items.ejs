@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Rice Mill Items</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; padding: 20px; }
+    h1 { color: #333; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { padding: 12px; border: 1px solid #ccc; text-align: left; }
+    th { background-color: #2874f0; color: white; }
+    a, button { color: #2874f0; text-decoration: none; cursor: pointer; background: none; border: none; }
+    button:hover, a:hover { text-decoration: underline; }
+    .actions { display: flex; gap: 10px; }
+    .top-nav {
+      margin-bottom: 15px;
+    }
+    .top-nav a {
+      margin-right: 15px;
+      font-weight: bold;
+      color: #2874f0;
+      text-decoration: none;
+    }
+    .top-nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/items/new">Add New Item</a>
+    <a href="/logout">Logout</a>
+  </div>
+  <h1>Your Rice Mill Items</h1>
+
+  <% if (items.length === 0) { %>
+    <p>No items found. <a href="/items/new">Add one now</a>.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price Per Unit</th>
+          <th>Date Added</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(item => { %>
+          <tr>
+            <td><%= item.itemName %></td>
+            <td><%= item.quantity %></td>
+            <td>₹ <%= item.pricePerUnit.toFixed(2) %></td>
+            <td><%= item.dateAdded.toLocaleDateString() %></td>
+            <td class="actions">
+              <a href="/items/edit/<%= item._id %>">Edit</a>
+              <form action="/items/delete/<%= item._id %>" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('Delete this item?')">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</body>
+</html>
